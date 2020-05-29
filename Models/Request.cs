@@ -7,9 +7,9 @@ namespace aggregate.Models
 {
     public class Request
     {
-        public DateTime dateLower { get; set; }
+        public string item { get; set; }
 
-        public DateTime dateUpper { get; set; }
+  
 
 
     }

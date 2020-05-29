@@ -14,36 +14,31 @@ namespace aggregate.Controllers
     public class SalesController : ApiController
 
     {
-       
-
-
         [Route("api/sales")]
-        [HttpPost]
-        public Response Sales(Request request)
+        [HttpGet]
+        public Response Sales()
         {
             var response = new Response();
             MongoClient client = new MongoClient("mongodb://localhost:27017");
             MongoDatabaseBase db = client.GetDatabase("ntut") as MongoDatabaseBase;
             var salesCollection = db.GetCollection<SalesCollection>("sales");
-            var query = Builders<SalesCollection>.Filter.
+            var query = new BsonDocument();
+
             var result = salesCollection.Aggregate().Match(query)
-                     .Group(e=>e.items,
-                     g => new sales
-                            {
-                                _id = g.Key,
-                                totalSaleAmount = g.Sum(x => x.price * x.quantity),
-                                averageQuantity = g.Avg(x => x.quantity),
-                                count = g.Count()
+                     .Group(e => e.item,
+                         e => new sales
+                         {
+                             _id = null,
+                      
 
-                            }).Tolist();
+                             count = e.Count()
+                         }) 
 
-
-
-            
+                      .ToList();    
+            response.items = result;
             return response;
-        } 
-        
-        
+        }    
+      
     }
     
 }

@@ -10,13 +10,13 @@ namespace aggregate.Models
     {
         public object _id { get; set; }
 
-        public string items { get; set; }
+        public string item { get; set; }
 
-        public decimal price { get; set; }
+        public double price { get; set; }
 
         public int quantity { get; set; }
 
-        public DateTime date { get; set; }
+      
 
 
 
