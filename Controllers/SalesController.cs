@@ -28,9 +28,9 @@ namespace aggregate.Controllers
                      .Group(e => e.item,
                          e => new sales
                          {
-                             _id = null,
-                      
-
+                             _id =e.Key ,
+                             totalSaleAmount = e.Sum(p => p.price * p.quantity),
+                             averageQuantity = e.Average(p => p.quantity),
                              count = e.Count()
                          }) 
 

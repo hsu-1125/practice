@@ -12,7 +12,7 @@ namespace aggregate.Models
 
         public string item { get; set; }
 
-        public double price { get; set; }
+        public float price { get; set; }
 
         public int quantity { get; set; }
 

@@ -19,7 +19,7 @@ namespace aggregate.Models
         public class sales
         {
             public string _id { get; set; }
-            public double totalSaleAmount { get; set; }
+            public float totalSaleAmount { get; set; }
             public double averageQuantity { get; set; }
             public int count { get; set; }
             public sales()
